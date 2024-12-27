@@ -25,7 +25,7 @@ jobs:
           imageName: ghcr.io/bboure/devcontainers
           subFolder: base
           imageTag: base
-          platform: linux/amd64,linux/arm64
+          # platform: linux/amd64,linux/arm64
 
       - name: Build typescript
         uses: devcontainers/ci@v0.3
@@ -33,4 +33,4 @@ jobs:
           imageName: ghcr.io/bboure/devcontainers
           subFolder: typescript
           imageTag: typescript
-          platform: linux/amd64,linux/arm64
+          # platform: linux/amd64,linux/arm64
