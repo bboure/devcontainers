@@ -1,4 +1,11 @@
 name: "build"
+
+permissions:
+  contents: read
+  packages: write
+  attestations: write
+  id-token: write
+
 on: # rebuild any PRs and main branch changes
   pull_request:
   push:
