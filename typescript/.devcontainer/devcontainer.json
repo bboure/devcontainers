@@ -1,0 +1,13 @@
+{
+  "name": "TypeScript",
+  "image": "ghcr.io/bboure/devcontainers:base",
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "meganrogge.template-string-converter"
+      ]
+    }
+  }
+}
