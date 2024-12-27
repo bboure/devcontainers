@@ -22,11 +22,15 @@ jobs:
       - name: Build base
         uses: devcontainers/ci@v0.3
         with:
-          imageName: ghcr.io/bboure/devcontainers:base
+          imageName: ghcr.io/bboure/devcontainers
           subFolder: base
+          imageTag: base
+          platform: linux/amd64,linux/arm64
 
       - name: Build typescript
         uses: devcontainers/ci@v0.3
         with:
-          imageName: ghcr.io/bboure/devcontainers:typescript
+          imageName: ghcr.io/bboure/devcontainers
           subFolder: typescript
+          imageTag: typescript
+          platform: linux/amd64,linux/arm64
