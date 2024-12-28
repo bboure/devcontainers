@@ -1,4 +1,4 @@
-name: "build"
+name: "Build images"
 
 permissions:
   contents: read
@@ -13,7 +13,8 @@ on: # rebuild any PRs and main branch changes
       - main
 
 jobs:
-  build:
+  base:
+    name: Build base
     runs-on: ubuntu-latest
     steps:
       - name: Checkout (GitHub)
@@ -31,6 +32,8 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+        with:
+          use: true
 
       - name: Build base
         uses: devcontainers/ci@v0.3
@@ -39,6 +42,29 @@ jobs:
           subFolder: base
           imageTag: base
           platform: linux/amd64,linux/arm64
+
+  typescript:
+    needs: base
+    name: Build TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (GitHub)
+        uses: actions/checkout@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          use: true
 
       - name: Build typescript
         uses: devcontainers/ci@v0.3
